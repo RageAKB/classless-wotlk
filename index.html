@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Classless WotLK — AzerothCore Mod</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">⚔️ Classless WotLK</div>
+            <ul class="nav-links">
+                <li><a href="#features">Features</a></li>
+                <li><a href="#download">Download</a></li>
+                <li><a href="#install">Install</a></li>
+                <li><a href="#client">Client</a></li>
+                <li><a href="#faq">FAQ</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <h1>Classless WotLK</h1>
+            <p class="tagline">Play World of Warcraft: Wrath of the Lich King as <strong>any class, any time</strong>. No restrictions. No custom textures. Pure vanilla assets.</p>
+            <div class="hero-buttons">
+                <a href="#download" class="btn btn-primary">Download Mod</a>
+                <a href="https://github.com/azerothcore/azerothcore-wotlk" target="_blank" class="btn btn-secondary">AzerothCore GitHub</a>
+            </div>
+        </section>
+
+        <section id="features" class="features">
+            <h2>Features</h2>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🎭</div>
+                    <h3>True Classless</h3>
+                    <p>Create characters without choosing a class. Every character has access to every spell from every class.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📜</div>
+                    <h3>All Spells</h3>
+                    <p>Full spell lists for all 8 classes (Warrior, Paladin, Hunter, Rogue, Priest, Shaman, Mage, Warlock, Druid) plus Death Knight.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🖼️</div>
+                    <h3>Built-in Textures Only</h3>
+                    <p>No custom textures, no custom models. Everything uses Blizzard's original WotLK client assets.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔧</div>
+                    <h3>Easy Installation</h3>
+                    <p>Drop-in SQL patches for your AzerothCore world database. One command to apply.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🌐</div>
+                    <h3>WotLK 3.3.5a</h3>
+                    <p>Built for the latest WotLK patch. Compatible with AzerothCore's current master branch.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <h3>Class Switching</h3>
+                    <p>Use the in-game command <code>.class</code> to switch between any class at any time. No re-creation needed.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="download" class="download">
+            <h2>Download</h2>
+            <p>Everything you need is in this repository. No external downloads required.</p>
+
+            <div class="download-grid">
+                <div class="download-card">
+                    <h3>📦 Server SQL Patches</h3>
+                    <p>SQL files to apply to your AzerothCore world database.</p>
+                    <ul>
+                        <li><code>0001_classless_character_creation.sql</code> — Allow classless character creation</li>
+                        <li><code>0002_classless_all_spells.sql</code> — Grant all spells to all characters</li>
+                        <li><code>0003_classless_skills.sql</code> — Grant all skills/proficiencies</li>
+                        <li><code>0004_classless_reputation.sql</code> — Starting reputation settings</li>
+                        <li><code>0005_classless_command.sql</code> — .class and .spec commands</li>
+                    </ul>
+                    <a href="sql/" class="btn btn-primary">View SQL Files</a>
+                </div>
+
+                <div class="download-card">
+                    <h3>🖥️ Client Configuration</h3>
+                    <p>Config files for your WoW client.</p>
+                    <ul>
+                        <li><code>config.wtf</code> — Server connection settings</li>
+                        <li><code>realmlist.wtf</code> — Realmlist configuration</li>
+                        <li><code>locale_enUS.patch</code> — Locale notes</li>
+                    </ul>
+                    <a href="client/" class="btn btn-primary">View Client Files</a>
+                </div>
+
+                <div class="download-card">
+                    <h3>📜 Installation Scripts</h3>
+                    <p>Automated setup scripts for Linux and Windows.</p>
+                    <ul>
+                        <li><code>install.sh</code> — Linux/Mac installation</li>
+                        <li><code>install.bat</code> — Windows installation</li>
+                        <li><code>apply_patches.sh</code> — Apply SQL patches</li>
+                    </ul>
+                    <a href="scripts/" class="btn btn-primary">View Scripts</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="install" class="install">
+            <h2>Installation Guide</h2>
+
+            <div class="install-steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Install AzerothCore</h3>
+                    <p>Follow the official AzerothCore installation guide:</p>
+                    <pre><code># Clone AzerothCore
+git clone https://github.com/azerothcore/azerothcore-wotlk.git
+cd azerothcore-wotlk
+
+# Build with Docker (recommended)
+./acore.sh docker build
+./acore.sh docker run</code></pre>
+                    <p>See <a href="https://github.com/azerothcore/azerothcore-wotlk/wiki" target="_blank">AzerothCore Wiki</a> for detailed instructions.</p>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>Apply SQL Patches</h3>
+                    <p>Copy the SQL files from this mod into your AzerothCore <code>sql/</code> directory, then apply them:</p>
+                    <pre><code># Copy SQL patches
+cp sql/*.sql /path/to/azerothcore-wotlk/sql/patches/custom/
+
+# Apply via Docker
+./acore.sh docker database update</code></pre>
+                    <p>Or apply manually via MySQL:</p>
+                    <pre><code>mysql -u acore -p acore &lt; 0001_classless_character_creation.sql
+mysql -u acore -p acore &lt; 0002_classless_all_spells.sql
+mysql -u acore -p acore &lt; 0003_classless_skills.sql
+mysql -u acore -p acore &lt; 0004_classless_reputation.sql
+mysql -u acore -p acore &lt; 0005_classless_command.sql</code></pre>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>Configure Your Client</h3>
+                    <p>Set up your WoW client's <code>config.wtf</code>:</p>
+                    <pre><code>SET realmlist "your-server-ip"
+SET account "your_account"
+SET patchlist "your-server-ip:8080"</code></pre>
+                    <p>See the <a href="#client">Client section</a> for full configuration files.</p>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <h3>Start the Server</h3>
+                    <pre><code>./acore.sh docker build
+./acore.sh docker run</code></pre>
+                    <p>Connect with your WoW client and create a classless character!</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="client" class="client">
+            <h2>Client Configuration</h2>
+
+            <h3>Required Files</h3>
+            <p>You need a clean WotLK 3.3.5a client. Place these files in your WoW directory:</p>
+
+            <div class="code-block">
+                <h4>config.wtf</h4>
+                <pre><code># World of Warcraft configuration file
+SET account "your_account"
+SET realmID "1"
+SET gameVersion "12340"
+SET patchlist "your-server-ip:8080"
+SET realmlist "your-server-ip"
+SET realmName "Classless WotLK"
+SET patchlist2 "your-server-ip:8080"
+SET patchlist3 "your-server-ip:8080"
+SET patchlist4 "your-server-ip:8080"</code></pre>
+            </div>
+
+            <h3>Realmlist Options</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Method</th>
+                        <th>How</th>
+                        <th>Pros</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>config.wtf</td>
+                        <td>Add <code>SET realmlist "ip"</code> to config.wtf</td>
+                        <td>Permanent, no patching needed</td>
+                    </tr>
+                    <tr>
+                        <td>realmlist.wtf</td>
+                        <td>Create <code>realmlist.wtf</code> with just the IP</td>
+                        <td>Simple, easy to change</td>
+                    </tr>
+                    <tr>
+                        <td>Patcher</td>
+                        <td>Use a custom patcher to modify the client</td>
+                        <td>Works even if config is reset</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>Server Ports</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Service</th>
+                        <th>Port</th>
+                        <th>Protocol</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Auth Server</td>
+                        <td>3724</td>
+                        <td>TCP</td>
+                    </tr>
+                    <tr>
+                        <td>World Server</td>
+                        <td>8085</td>
+                        <td>TCP</td>
+                    </tr>
+                    <tr>
+                        <td>Patcher Server</td>
+                        <td>8080</td>
+                        <td>HTTP</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section id="faq" class="faq">
+            <h2>FAQ</h2>
+
+            <div class="faq-item">
+                <h3>What does "classless" mean?</h3>
+                <p>Characters are created without selecting a class. You have access to all spells from all classes simultaneously. Use <code>.class</code> to switch your active class at any time.</p>
+            </div>
+
+            <div class="faq-item">
+                <h3>Do I need custom textures?</h3>
+                <p>No. This mod uses only Blizzard's built-in WotLK textures and models. No custom content is required on the client side.</p>
+            </div>
+
+            <div class="faq-item">
+                <h3>Which AzerothCore version is this compatible with?</h3>
+                <p>This mod is compatible with AzerothCore's current master branch (WotLK 3.3.5a). Check the <a href="https://github.com/azerothcore/azerothcore-wotlk/releases" target="_blank">AzerothCore releases</a> page for the latest version.</p>
+            </div>
+
+            <div class="faq-item">
+                <h3>Can I still play as a specific class?</h3>
+                <p>Yes. Use the <code>.class</code> command to switch between any of the 8 base classes plus Death Knight. Your gear, talents, and abilities will update to match.</p>
+            </div>
+
+            <div class="faq-item">
+                <h3>Is this legal?</h3>
+                <p>This mod only modifies server-side data (SQL). It does not distribute any Blizzard copyrighted files. You must own a legitimate copy of WoW WotLK to use this.</p>
+            </div>
+
+            <div class="faq-item">
+                <h3>How do I add more players?</h3>
+                <p>Use the in-game admin command <code>.account create username password</code> to create new accounts. Set the security level as needed.</p>
+            </div>
+        </section>
+
+        <section class="commands">
+            <h2>Admin Commands</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Command</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>.class [class]</code></td>
+                        <td>Switch to a specific class (warrior, paladin, hunter, rogue, priest, shaman, deathknight, mage, warlock, druid)</td>
+                    </tr>
+                    <tr>
+                        <td><code>.spec [spec]</code></td>
+                        <td>Switch to a specific specialization (e.g., "fury", "arms", "protection" for warriors)</td>
+                    </tr>
+                    <tr>
+                        <td><code>.learn all</code></td>
+                        <td>Learn all spells for your current class</td>
+                    </tr>
+                    <tr>
+                        <td><code>.unlearn all</code></td>
+                        <td>Unlearn all spells</td>
+                    </tr>
+                    <tr>
+                        <td><code>.account create [name] [pass]</code></td>
+                        <td>Create a new account</td>
+                    </tr>
+                    <tr>
+                        <td><code>.account set gmlevel [level]</code></td>
+                        <td>Set GM level (0=player, 1=mod, 2=admin, 3=superadmin)</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+    </main>
+
+    <footer>
+        <p>Classless WotLK — A community mod for AzerothCore</p>
+        <p>Not affiliated with Blizzard Entertainment. WoW and WotLK are trademarks of Blizzard Entertainment.</p>
+        <p><a href="https://github.com/azerothcore/azerothcore-wotlk" target="_blank">AzerothCore</a> · <a href="https://www.azerothcore.org/" target="_blank">AzerothCore.org</a></p>
+    </footer>
+
+    <script src="main.js"></script>
+</body>
+</html>
